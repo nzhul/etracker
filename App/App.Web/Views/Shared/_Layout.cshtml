@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html class="no-js">
+<head>
+	<meta charset="utf-8">
+	<!--[if IE]>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<![endif]-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="@ViewBag.MetaDescription">
+
+	<title>@ViewBag.Title</title>
+	<link rel="icon" type="image/vnd.microsoft.icon" href="~/Content/img/fav.ico" />
+
+	@Styles.Render("~/bundles/garderob-fe-styles")
+	@RenderSection("styles", required: false)
+
+</head>
+<body>
+	<header>
+		<div class="site-top-panel">
+			<div class="container p-relative">
+				<div class="row">
+					<div class="col-sm-4">
+						<h4 class="headline"><a style="font-weight:bold;letter-spacing:1px;color: #58585a;" href="/">Employee <span style="color: #237dc8;"> Arrival</span> Reporting</a></h4>
+						<!-- Test -->
+					</div>
+					<div class="col-sm-4" >
+
+					</div>
+					@Html.Partial("_ProfileLinks")
+				</div>
+			</div>
+		</div>
+
+	</header>
+	<div class="content-body">
+		@RenderBody()
+	</div>
+	<div id="scroll-top"><i class="fa fa-angle-up"></i></div>
+	<div class="login-popup">
+		<div class="login-popup-wrap">
+			<div class="title-wrap">
+				<h2>Login</h2><i class="close-button flaticon-cross"></i>
+			</div>
+			<div class="login-content">
+				<form class="form">
+					@Html.AntiForgeryToken()
+					<input type="text" name="email" value="" size="40" placeholder="Enter Email ..." aria-required="true" class="form-row form-row-first">
+					<input type="password" name="password" value="" size="40" placeholder="Enter Password ..." aria-required="true" class="form-row form-row-last">
+				</form>
+				<div class="remember">
+					<div class="checkbox">
+						<input id="checkbox3" type="checkbox" value="None" name="check">
+						<label for="checkbox3">Remember me</label>
+					</div>@*<a href="#">Забравена парола ?</a>*@
+				</div><a id="login-button" class="cws-button gray alt full-width mt-20">Login</a>
+				<span id="login-status" class="label label-info">Loging in ...</span>
+			</div>
+			<div class="login-bot">
+				<p>Don't have account yet ? <a href="/account/register">Register here</a></p>
+			</div>
+		</div>
+	</div>
+
+	@Scripts.Render("~/bundles/garderob-fe-scripts")
+	@RenderSection("scripts", required: false)
+</body>
+</html>

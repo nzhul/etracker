@@ -1,0 +1,124 @@
+﻿@model App.Web.Models.RegisterViewModel
+@{
+	ViewBag.Title = "Register";
+}
+
+<!-- content-->
+<!-- breadcrumbs start-->
+<section class="breadcrumbs">
+	<div class="container">
+		<div class="text-center breadcrumbs-item">
+			<h1>Рeгистрация</h1><a href="#">начало</a><i class="fa fa-angle-right"></i><a href="#">Регистрация</a>
+		</div>
+	</div>
+</section>
+<!-- ! breadcrumbs end-->
+<div class="container pb-60">
+	<div class="row registration-row">
+		<div class="col-md-6">
+			<h3>Регистрация на нов потребител:</h3>
+			<div class="widget-contact-form pb-0">
+				<!-- contact-form-->
+				@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @id = "registration-form", @class = "form contact-form alt clearfix" }))
+				{
+					@*@using (Ajax.BeginForm("Register", "Account", null, new AjaxOptions { UpdateTargetId = "result" },
+						new { @class = "form contact-form alt clearfix", @id = "result" }))
+							{*@
+					@Html.AntiForgeryToken()
+					@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+					@Html.LabelFor(model => model.Email) 
+					@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.Email)
+					<br />
+
+					@Html.LabelFor(model => model.Password) 
+					@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.Password)
+					<br />
+
+					@Html.LabelFor(model => model.ConfirmPassword) 
+					@Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.ConfirmPassword)
+					<br />
+
+					@Html.LabelFor(model => model.FirstName)
+					@Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.FirstName)
+					<br />
+
+					@Html.LabelFor(model => model.LastName)
+					@Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.LastName)
+					<br />
+
+					@Html.LabelFor(model => model.JobTitle)
+					@Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.JobTitle)
+					<br />
+
+					@Html.LabelFor(model => model.Company)
+					@Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.Company)
+					<br />
+
+					@Html.LabelFor(model => model.City)
+					@Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.City)
+					<br />
+
+					@Html.LabelFor(model => model.Address)
+					@Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.Address)
+					<br />
+
+					@Html.LabelFor(model => model.DeliveryAddress)
+					@Html.ValidationMessageFor(model => model.DeliveryAddress, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.DeliveryAddress)
+					<br />
+
+					@Html.LabelFor(model => model.Phone)
+					@Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.Phone)
+					<br />
+
+					@Html.LabelFor(model => model.InvoiceData)
+					@Html.ValidationMessageFor(model => model.InvoiceData, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.InvoiceData)
+					<br />
+					<div class="checkbox">
+						@Html.EditorFor(model => model.TermsAccepted)
+						@Html.LabelFor(model => model.TermsAccepted)
+						@Html.ValidationMessageFor(model => model.TermsAccepted, "", new { @class = "text-danger" })
+					</div>
+						<button type="submit" class="cws-button alt full-width">
+							Регистрирай
+						</button>
+				}
+				<!-- ! contact-form-->
+			</div>
+		</div>
+		<div class="col-md-6 terms-container">
+			<h3>Общи условия:</h3>
+			<h5>Nulla leo nulla, ornare pretium sapien at.</h5>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consequat ex ut nisi posuere, et laoreet dolor suscipit. Integer pulvinar, turpis et ultricies porttitor, massa arcu efficitur mi, a pretium mi odio id eros. Nulla leo nulla, ornare pretium sapien at, feugiat pharetra ante. Integer non neque sit amet lorem placerat condimentum sed sed sem. Pellentesque at suscipit lacus. Integer a tempus nunc, sed finibus nulla. Pellentesque in tristique augue.
+			</p>
+			<h5>Nulla leo nulla, ornare pretium sapien at.</h5>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consequat ex ut nisi posuere, et laoreet dolor suscipit. Integer pulvinar, turpis et ultricies porttitor,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consequat ex ut nisi posuere, et laoreet dolor suscipit. Integer pulvinar, turpis et ultricies porttitor, massa arcu efficitur mi, a pretium mi odio id eros. Nulla leo nulla, ornare pretium sapien at, feugiat pharetra ante. Integer non neque sit amet lorem placerat condimentum sed sed sem. Pellentesque at suscipit lacus. Integer a tempus nunc, sed finibus nulla. Pellentesque in tristique augue.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consequat ex ut nisi posuere, et laoreet dolor suscipit. Integer pulvinar, turpis et ultricies porttitor, massa arcu efficitur mi, a pretium mi odio id eros. Nulla leo nulla, ornare pretium sapien at, feugiat pharetra ante. Integer non neque sit amet lorem placerat condimentum sed sed sem. Pellentesque at suscipit lacus. Integer a tempus nunc, sed finibus nulla. Pellentesque in tristique augue.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consequat ex ut nisi posuere, et laoreet dolor suscipit. Integer pulvinar, turpis et ultricies porttitor, massa arcu efficitur mi, a pretium mi odio id eros. Nulla leo nulla, ornare pretium sapien at, feugiat pharetra ante. Integer non neque sit amet lorem placerat condimentum sed sed sem. Pellentesque at suscipit lacus. Integer a tempus nunc, sed finibus nulla. Pellentesque in tristique augue. massa arcu efficitur mi, a pretium mi odio id eros. Nulla leo nulla, ornare pretium sapien at, feugiat pharetra ante. Integer non neque sit amet lorem placerat condimentum sed sed sem. Pellentesque at suscipit lacus. Integer a tempus nunc, sed finibus nulla. Pellentesque in tristique augue.
+			</p>
+			<h5>Nulla leo nulla, ornare pretium sapien at.</h5>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consequat ex ut nisi posuere, et laoreet dolor suscipit. Integer pulvinar, turpis et ultricies porttitor, massa arcu efficitur mi, a pretium mi odio id eros. Nulla leo nulla, ornare pretium sapien at, feugiat pharetra anLorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consequat ex ut nisi posuere, et laoreet dolor suscipit. Integer pulvinar, turpis et ultricies porttitor, massa arcu efficitur mi, a pretium mi odio id eros. Nulla leo nulla, ornare pretium sapien at, feugiat pharetra ante. Integer non neque sit amet lorem placerat condimentum sed sed sem. Pellentesque at suscipit lacus. Integer a tempus nunc, sed finibus nulla. Pellentesque in tristique augue.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consequat ex ut nisi posuere, et laoreet dolor suscipit. Integer pulvinar, turpis et ultricies porttitor, massa arcu efficitur mi, a pretium mi odio id eros. Nulla leo nulla, ornare pretium sapien at, feugiat pharetra ante. Integer non neque sit amet lorem placerat condimentum sed sed sem. Pellentesque at suscipit lacus. Integer a tempus nunc, sed finibus nulla. Pellentesque in tristique augue.te. Integer non neque sit amet
+			</p>
+		</div>
+	</div>
+</div>
+<!-- ! content-->
+@section Scripts {
+	@*@Scripts.Render("~/bundles/jqueryval")*@
+	<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+	<script src="~/Scripts/jquery.validate.min.js"></script>
+	<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}

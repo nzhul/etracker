@@ -1,0 +1,32 @@
+﻿@using Microsoft.AspNet.Identity
+
+<div class="col-sm-4 text-right">
+	<div class="top-right-wrap">
+		@if (Request.IsAuthenticated)
+		{
+			using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+			{
+				@Html.AntiForgeryToken()
+				<div id="profile-links-dropdown" class="dropdown">
+					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+						@User.Identity.GetUserName()
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a href="/manage/profile"><i class="fa fa-user"></i> Profile</a></li>
+						@if (this.User.IsInRole("Admin"))
+						{
+							<li><a href="@Url.Action("Index", "Orders", new { area = "Administration" }, null)"><i class="fa fa-lock"></i> Administration</a></li>
+						}
+						<li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-remove"></i> Logout</a></li>
+					</ul>
+				</div>
+			}
+		}
+		else
+		{
+			<div class="top-login"><i class="fa fa-user"></i>Login</div><span>|</span>
+			<div><i class="fa fa-sign-in"></i><a href="/account/register">Register</a></div>
+		}
+	</div>
+</div>

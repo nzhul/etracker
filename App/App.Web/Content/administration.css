@@ -1,0 +1,200 @@
+﻿/* Administration styling*/
+/*Table CSS*/
+
+table {
+	width: 100%;
+	text-align: left;
+	border-collapse: collapse;
+	border: 1px solid gray;
+	box-shadow: 2px 2px 0px gray;
+}
+
+	table th {
+		padding: 8px;
+		font-weight: bold;
+		font-size: 14px;
+		color: gray;
+		border-bottom: 1px dashed gray;
+		background: #e5e5e5;
+	}
+
+	table tr th.centered, table tr td.centered {
+		text-align: center !important;
+	}
+
+	table td {
+		padding: 5px 5px 5px 5px;
+		color: gray;
+	}
+
+	table tbody tr:hover td {
+		color: #6a6a6a;
+		background: #e5e5e5;
+	}
+
+	table th, table td {
+		text-align: left;
+		vertical-align: middle;
+	}
+
+/*Table CSS END*/
+
+.dab-input-label {
+	color: black;
+	font-size: 14px;
+}
+
+.field-validation-error {
+	color: red;
+}
+
+
+/* Administration styling */
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.thumbnail-hover {
+	background: rgba(0, 0, 0, 0.80);
+	width: 77px;
+	height: 25px;
+	position: relative;
+	z-index: 2;
+	left: -83px;
+	top: 1px;
+	float: left;
+	margin-right: -79px;
+	margin-top: 65px;
+	text-align: center;
+	font-size: 12px;
+	padding: 3px 0 0 0px;
+}
+
+	.thumbnail-hover.is-primary {
+		color: white;
+	}
+
+.product-image-thumbnail-admin {
+	float: left;
+	width: 77px;
+	margin: 5px 6px -5px 0px;
+	border: 1px solid black;
+}
+
+.popup-ajax {
+	cursor: pointer;
+}
+
+.admin-hover-image {
+	position: absolute;
+	margin: -240px 0 0 -100px;
+	border: 1px solid black;
+	box-shadow: rgba(0,0,0,0.7) 3px 3px 3px;
+	visibility: hidden;
+}
+
+.upload-img-remove-icon {
+	float: right;
+	position: relative;
+	top: -20px;
+	left: -100px;
+}
+
+.upload-container .upload {
+	margin-top: 10px;
+}
+
+.client-photo {
+	width: 100px;
+	height: 100px;
+	display: block;
+}
+
+.delete-profile-photo-btn {
+	border-radius: 0px;
+	width: 100px;
+}
+
+.save-btn {
+	width: 100%;
+}
+
+.profile-image-loading, .profile-image-success, .profile-image-fail {
+	width: 100px;
+	height: 100px;
+	text-align: center;
+	border: 1px solid #d7d7d7;
+	line-height: 100px;
+	background-color: white;
+	display: none;
+}
+
+.profile-image-loading {
+	color: dodgerblue;
+}
+
+.profile-image-success {
+	color: green;
+}
+
+.profile-image-fail {
+	color: red;
+}
+
+
+.order-thumbnail {
+	width:100px;
+	height:100px;
+	border: 1px solid gray;
+	margin: 0 0 0 0px;
+}
+
+.order-category {
+	margin: -5px 0 45px 0px;
+}
+
+	.order-category img {
+		outline: 1px solid #237dc8;
+		outline-offset: -1px;
+		margin: 5px 2px 0 0px;
+		cursor: pointer;
+	}
+
+		.order-category img:hover {
+			outline: 3px solid #237dc8;
+			outline-offset: -3px;
+		}
+
+		.order-category img.selected {
+			outline: 3px solid #237dc8;
+			outline-offset: -3px;
+			opacity: 1 !important;
+		}
+
+		.order-category img.dimmed {
+			opacity: 0.5;
+		}
+
+.concealed {
+	visibility: hidden;
+	width: 1% !important;
+	height: 1% !important;
+	line-height: 0px !important;
+	position: absolute;
+	top: -99999px;
+}
+
+.image-wrapper {
+	width: 100px;
+	float: left;
+	margin: 5px;
+}
+
+.material-thumbnail-index {
+	max-height: 31px;
+}
+
+hr {
+	border-top: 1px solid #cfcfcf;
+}
