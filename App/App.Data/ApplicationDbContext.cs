@@ -23,8 +23,13 @@ namespace App.Data
 		}
 
 		public IDbSet<Image> Images { get; set; }
+
 		public IDbSet<Employee> Employees { get; set; }
+
 		public IDbSet<Team> Teams { get; set; }
+
 		public IDbSet<CompanyRole> CompanyRoles { get; set; }
+
+		public IDbSet<Report> Reports { get; set; }
 	}
 }

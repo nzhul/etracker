@@ -4,6 +4,9 @@
 	using App.Data.Service.Implementation;
 	using App.Models;
 	using App.Models.Configs;
+	using App.Models.Employees;
+	using App.Models.Roles;
+	using App.Models.Teams;
 	using Microsoft.AspNet.Identity;
 	using Microsoft.AspNet.Identity.EntityFramework;
 	using Newtonsoft.Json;
@@ -43,7 +46,64 @@
 				IList<JsonEmployee> employeesData = JsonConvert.DeserializeObject<IList<JsonEmployee>>(new StreamReader(HttpContext.Current.Server.MapPath("~/App_Data/EmployeesData/few-employees.json")).ReadToEnd());
 				foreach (var employeeDataItem in employeesData)
 				{
+					Employee newEmployee = new Employee
+					{
+						Name = employeeDataItem.Name,
+						SurName = employeeDataItem.SurName,
+						Email = employeeDataItem.Email,
+						Age = employeeDataItem.Age,
+					};
 
+					context.Employees.Add(newEmployee);
+					context.SaveChanges();
+
+					// Create/Assign Teams
+					foreach (string team in employeeDataItem.Teams)
+					{
+						Team dbTeam = context.Teams.FirstOrDefault(t => t.Name == team);
+						if (dbTeam == null)
+						{
+							dbTeam = new Team
+							{
+								Name = team
+							};
+
+							context.Teams.Add(dbTeam);
+							context.SaveChanges();
+						}
+
+						dbTeam.Employees.Add(newEmployee);
+						context.SaveChanges();
+					}
+
+					// Create/Assign Roles
+					CompanyRole dbRole = context.CompanyRoles.FirstOrDefault(r => r.Name == employeeDataItem.Role);
+					if (dbRole == null)
+					{
+						dbRole = new CompanyRole
+						{
+							Name = employeeDataItem.Role
+						};
+
+						context.CompanyRoles.Add(dbRole);
+						context.SaveChanges();
+					}
+
+					dbRole.Employees.Add(newEmployee);
+					context.SaveChanges();
+
+					// Create/Assign Manager
+					if (employeeDataItem.ManagerId == 0)
+					{
+						employeeDataItem.ManagerId++;
+					}
+
+					Employee dbManager = context.Employees.FirstOrDefault(e => e.Id == employeeDataItem.ManagerId);
+					if (dbManager != null)
+					{
+						newEmployee.Manager = dbManager;
+						context.SaveChanges();
+					}
 				}
 			}
 		}

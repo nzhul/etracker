@@ -59,6 +59,14 @@ namespace App.Data
 			}
 		}
 
+		public IRepository<Report> Reports
+		{
+			get
+			{
+				return this.GetRepository<Report>();
+			}
+		}
+
 		public IRepository<Team> Teams
 		{
 			get

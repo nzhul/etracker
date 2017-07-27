@@ -16,6 +16,8 @@ namespace App.Data
 
 		IRepository<Employee> Employees { get; }
 
+		IRepository<Report> Reports { get; }
+
 		IRepository<Team> Teams { get; }
 
 		IRepository<CompanyRole> Roles { get; }

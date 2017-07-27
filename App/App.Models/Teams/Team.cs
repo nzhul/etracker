@@ -1,5 +1,6 @@
 ﻿using App.Models.Employees;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace App.Models.Teams
 {
@@ -12,6 +13,7 @@ namespace App.Models.Teams
 			this.employees = new HashSet<Employee>();
 		}
 
+		[Key]
 		public int Id { get; set; }
 
 		public string Name { get; set; }
