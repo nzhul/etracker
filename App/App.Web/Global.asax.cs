@@ -22,7 +22,7 @@ namespace App.Web
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
 
 			Mapper.Initialize(c => c.AddProfile<MappingProfile>());
-			TokenProvider.AquireToken();
+			//TokenProvider.AquireToken();
 		}
 	}
 }
