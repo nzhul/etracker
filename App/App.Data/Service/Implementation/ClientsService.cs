@@ -13,14 +13,14 @@ namespace App.Data.Service.Implementation
 {
 	public class ClientsService : IClientsService
 	{
-		private readonly IUoWData Data;
+		private readonly IUoWData data;
 		private IConfigService configService;
 		private const int defaultPageSize = 10;
 		private const int defaultPage = 0;
 
 		public ClientsService(IUoWData data, IConfigService configService)
 		{
-			this.Data = data;
+			this.data = data;
 			this.configService = configService;
 		}
 
@@ -36,7 +36,7 @@ namespace App.Data.Service.Implementation
 				pagesize = defaultPageSize;
 			}
 
-			IQueryable<ApplicationUser> users = this.Data.Users.All().Where(u => u.IsActive == true).OrderByDescending(u => u.RegisterDate);
+			IQueryable<ApplicationUser> users = this.data.Users.All().Where(u => u.IsActive == true).OrderByDescending(u => u.RegisterDate);
 			users = users.Skip(page.Value * pagesize.Value).Take(pagesize.Value);
 
 			return users;
@@ -44,17 +44,17 @@ namespace App.Data.Service.Implementation
 
 		public IQueryable<ApplicationUser> GetInactiveUsers()
 		{
-			return this.Data.Users.All().Where(u => u.IsActive == false).OrderByDescending(u => u.Email);
+			return this.data.Users.All().Where(u => u.IsActive == false).OrderByDescending(u => u.Email);
 		}
 
 		public ApplicationUser GetUserById(string id)
 		{
-			return this.Data.Users.Find(id);
+			return this.data.Users.Find(id);
 		}
 
 		public void UpdateClient(ApplicationUser user)
 		{
-			ApplicationUser dbUser = this.Data.Users.All().Single(u => u.Email == user.Email);
+			ApplicationUser dbUser = this.data.Users.All().Single(u => u.Email == user.Email);
 
 			dbUser.FirstName = user.FirstName;
 			dbUser.LastName = user.LastName;
@@ -67,7 +67,7 @@ namespace App.Data.Service.Implementation
 				dbUser.ProfileImage = user.ProfileImage;
 			}
 
-			this.Data.SaveChanges();
+			this.data.SaveChanges();
 		}
 
 		public byte[] UploadProfileImage(HttpPostedFileBase uploadedImage, string userId)
@@ -82,28 +82,28 @@ namespace App.Data.Service.Implementation
 
 		public int GetUsersCount()
 		{
-			return this.Data.Users.All().Where(u => u.IsActive).Count();
+			return this.data.Users.All().Where(u => u.IsActive).Count();
 		}
 
 		public void DeactivateClient(string id)
 		{
-			ApplicationUser dbUser = this.Data.Users.Find(id);
+			ApplicationUser dbUser = this.data.Users.Find(id);
 
 			if (dbUser != null)
 			{
 				dbUser.IsActive = false;
-				this.Data.SaveChanges();
+				this.data.SaveChanges();
 			}
 		}
 
 		public void ActivateClient(string id)
 		{
-			ApplicationUser dbUser = this.Data.Users.Find(id);
+			ApplicationUser dbUser = this.data.Users.Find(id);
 
 			if (dbUser != null)
 			{
 				dbUser.IsActive = true;
-				this.Data.SaveChanges();
+				this.data.SaveChanges();
 			}
 		}
 
@@ -115,13 +115,13 @@ namespace App.Data.Service.Implementation
 			}
 			else
 			{
-				return this.Data.Users.All().Any(u => u.Id == id);
+				return this.data.Users.All().Any(u => u.Id == id);
 			}
 		}
 
 		public bool UpdateClient(string id, EditClientInputModel inputModel)
 		{
-			ApplicationUser dbUser = this.Data.Users.Find(id);
+			ApplicationUser dbUser = this.data.Users.Find(id);
 			if (dbUser != null)
 			{
 				dbUser = Mapper.Map(inputModel, dbUser);
@@ -131,7 +131,7 @@ namespace App.Data.Service.Implementation
 					dbUser.ProfileImage = ImageUtilities.CropImage(inputModel.PostedNewProfilePhoto, "width=150&height=150&crop=auto&format=jpg");
 				}
 
-				this.Data.SaveChanges();
+				this.data.SaveChanges();
 				return true;
 			}
 			else
@@ -147,7 +147,7 @@ namespace App.Data.Service.Implementation
 			if (dbUser != null)
 			{
 				dbUser.ProfileImage = null;
-				this.Data.SaveChanges();
+				this.data.SaveChanges();
 
 				return true;
 			}
@@ -163,7 +163,7 @@ namespace App.Data.Service.Implementation
 			ApplicationUser theAdmin = null;
 			if (adminConfig != null)
 			{
-				theAdmin = this.Data.Users.All().Where(u => u.Email == adminConfig.Email).Single();
+				theAdmin = this.data.Users.All().Where(u => u.Email == adminConfig.Email).Single();
 			}
 
 			return theAdmin;
@@ -171,7 +171,7 @@ namespace App.Data.Service.Implementation
 
 		public ApplicationUser GetUserByEmail(string email)
 		{
-			return this.Data.Users.All().Where(u => u.Email == email).Single();
+			return this.data.Users.All().Where(u => u.Email == email).Single();
 		}
 	}
 }

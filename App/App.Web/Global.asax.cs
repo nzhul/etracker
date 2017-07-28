@@ -1,7 +1,6 @@
 ﻿using App.Web.App_Start;
 using App.Web.Infrastructure.ControllerFactory;
 using App.Web.Infrastructure.Mapping;
-using App.Web.Infrastructure.TokenProviders;
 using AutoMapper;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -22,7 +21,6 @@ namespace App.Web
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
 
 			Mapper.Initialize(c => c.AddProfile<MappingProfile>());
-			//TokenProvider.AquireToken();
 		}
 	}
 }

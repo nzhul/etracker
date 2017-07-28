@@ -29,6 +29,8 @@ namespace App.Web.Infrastructure.ControllerFactory
 			ninjectKernel.Bind<IClientsService>().To<ClientsService>();
 			ninjectKernel.Bind<IImagesService>().To<ImagesService>();
 			ninjectKernel.Bind<IConfigService>().To<ConfigService>();
+			ninjectKernel.Bind<ITokenService>().To<TokenService>();
+			ninjectKernel.Bind<IReportsService>().To<ReportsService>();
 		}
 	}
 }

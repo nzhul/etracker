@@ -83,6 +83,14 @@ namespace App.Data
 			}
 		}
 
+		public IRepository<Token> Tokens
+		{
+			get
+			{
+				return this.GetRepository<Token>();
+			}
+		}
+
 		public int SaveChanges()
 		{
 			return this.context.SaveChanges();

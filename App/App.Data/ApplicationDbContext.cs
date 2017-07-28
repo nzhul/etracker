@@ -31,5 +31,7 @@ namespace App.Data
 		public IDbSet<CompanyRole> CompanyRoles { get; set; }
 
 		public IDbSet<Report> Reports { get; set; }
+
+		public IDbSet<Token> Tokens { get; set; }
 	}
 }

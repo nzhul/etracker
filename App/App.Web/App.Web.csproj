@@ -213,9 +213,6 @@
     <Compile Include="Infrastructure\ControllerFactory\NinjectControllerFactory.cs" />
     <Compile Include="Infrastructure\Helpers\AppHelpers.cs" />
     <Compile Include="Infrastructure\Mapping\MappingProfile.cs" />
-    <Compile Include="Infrastructure\TokenProviders\RequestExecutor.cs" />
-    <Compile Include="Infrastructure\TokenProviders\TokenRequest.cs" />
-    <Compile Include="Infrastructure\TokenProviders\TokenProvider.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContactFormInputModel.cs" />
     <Compile Include="Models\IndexViewModel.cs" />

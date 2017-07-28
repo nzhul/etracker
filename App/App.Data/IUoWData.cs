@@ -24,6 +24,8 @@ namespace App.Data
 
 		IRepository<Image> Images { get; }
 
+		IRepository<Token> Tokens { get; }
+
 		int SaveChanges();
 	}
 }

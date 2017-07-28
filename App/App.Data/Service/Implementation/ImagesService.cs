@@ -5,17 +5,17 @@ namespace App.Data.Service.Implementation
 {
 	public class ImagesService : IImagesService
 	{
-		IUoWData Data;
+		IUoWData data;
 
 		public ImagesService(IUoWData data)
 		{
-			this.Data = data;
+			this.data = data;
 		}
 
 		public bool DeleteImage(int id)
 		{
-			Image deletedImage = this.Data.Images.Delete(id);
-			this.Data.SaveChanges();
+			Image deletedImage = this.data.Images.Delete(id);
+			this.data.SaveChanges();
 
 			if (deletedImage != null)
 			{
@@ -29,7 +29,7 @@ namespace App.Data.Service.Implementation
 
 		public Image GetImage(int id)
 		{
-			return this.Data.Images.Find(id);
+			return this.data.Images.Find(id);
 		}
 	}
 }

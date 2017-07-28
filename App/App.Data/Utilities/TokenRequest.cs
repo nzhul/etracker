@@ -1,6 +1,6 @@
 ﻿using System.Net.Http;
 
-namespace App.Web.Infrastructure.TokenProviders
+namespace App.Data.Utilities
 {
 	public class TokenRequest
 	{
@@ -15,13 +15,13 @@ namespace App.Web.Infrastructure.TokenProviders
 
 		public TokenRequest(HttpMethod httpMethod, string requestPathAndQuery)
 				: this(httpMethod)
-			{
+		{
 			this.requestPathAndQuery = requestPathAndQuery;
 		}
 
 		public TokenRequest(HttpMethod httpMethod, string requestPathAndQuery, string postData)
 				: this(httpMethod, requestPathAndQuery)
-			{
+		{
 			this.PostData = postData;
 		}
 

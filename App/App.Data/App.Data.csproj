@@ -117,12 +117,18 @@
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Service\Abstraction\IConfigService.cs" />
     <Compile Include="Service\Abstraction\IImagesService.cs" />
+    <Compile Include="Service\Abstraction\IReportsService.cs" />
+    <Compile Include="Service\Abstraction\ITokenService.cs" />
     <Compile Include="Service\Implementation\ClientsService.cs" />
     <Compile Include="Service\Abstraction\IClientsService.cs" />
     <Compile Include="Service\Implementation\ConfigService.cs" />
     <Compile Include="Service\Implementation\ImagesService.cs" />
+    <Compile Include="Service\Implementation\ReportsService.cs" />
+    <Compile Include="Service\Implementation\TokenService.cs" />
     <Compile Include="UoWData.cs" />
     <Compile Include="Utilities\ImageUtilities.cs" />
+    <Compile Include="Utilities\RequestExecutor.cs" />
+    <Compile Include="Utilities\TokenRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
