@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -7,22 +8,19 @@ namespace App.Data.Utilities
 {
 	public class RequestExecutor
 	{
+		private string rootEndpoint;
+		private const string reportServiceRootEndpointConfigKey = "reportServiceRootEndpoint";
+
 		private string RootEndpoint
 		{
 			get
 			{
-				return "http://dev.etrackerservice.com";
-				//if (string.IsNullOrEmpty(this.rootEndpoint))
-				//{
-				//	TelligentConfig telligentConfig = Config.Get<TelligentConfig>();
-				//	this.rootEndpoint = telligentConfig.RootEndpoint;
+				if (string.IsNullOrEmpty(this.rootEndpoint))
+				{
+					this.rootEndpoint = ConfigurationManager.AppSettings[RequestExecutor.reportServiceRootEndpointConfigKey]; ;
+				}
 
-				//	return this.rootEndpoint;
-				//}
-				//else
-				//{
-				//	return this.rootEndpoint;
-				//}
+				return this.rootEndpoint;
 			}
 		}
 
@@ -58,7 +56,7 @@ namespace App.Data.Utilities
 			}
 			catch (Exception exception)
 			{
-				// Log the exception somewhere
+				// Log the exception somewhere and hide it from the end user.
 			}
 
 			return string.Empty;

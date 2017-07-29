@@ -83,9 +83,10 @@
     <Compile Include="Configs\AdminConfiguration.cs" />
     <Compile Include="Employees\Report.cs" />
     <Compile Include="Employees\Employee.cs" />
-    <Compile Include="Employees\Token.cs" />
+    <Compile Include="Employees\ReportingToken.cs" />
     <Compile Include="Images\Image.cs" />
     <Compile Include="InputModels\EditClientInputModel.cs" />
+    <Compile Include="InputModels\ReportInputData.cs" />
     <Compile Include="Roles\Role.cs" />
     <Compile Include="Teams\Team.cs" />
     <Compile Include="Images\UploadPhotoModel.cs" />

@@ -1,4 +1,5 @@
-﻿using App.Models.Employees;
+﻿using System;
+using App.Models.Employees;
 
 namespace App.Data.Service.Abstraction
 {
@@ -6,8 +7,10 @@ namespace App.Data.Service.Abstraction
 	{
 		string AquireToken();
 
-		bool SaveToken(string token);
+		bool SaveToken(string tokenJson);
 
-		Token GetToken();
+		ReportingToken GetToken();
+
+		bool TokenExists(Guid token);
 	}
 }

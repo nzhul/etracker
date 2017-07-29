@@ -83,11 +83,11 @@ namespace App.Data
 			}
 		}
 
-		public IRepository<Token> Tokens
+		public IRepository<ReportingToken> Tokens
 		{
 			get
 			{
-				return this.GetRepository<Token>();
+				return this.GetRepository<ReportingToken>();
 			}
 		}
 

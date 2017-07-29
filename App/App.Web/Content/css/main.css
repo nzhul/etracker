@@ -387,7 +387,7 @@ h3 span {
 }
 
 .page-section {
-	padding: 100px 0 140px 0;
+	padding: 50px 0 140px 0;
 }
 
 .content-body {
@@ -1295,14 +1295,14 @@ hr {
 table.table {
 	max-width: 100%;
 	width: 100%;
-	border: 1px solid #e6e6e6;
+	border: 1px solid #237dc8;
 	overflow: hidden;
-	background-color: transparent;
+	background-color: white;
 	border-collapse: inherit;
 	border-spacing: 0;
 	font-size: 14px;
 	margin: 0;
-	box-shadow: 2px 2px 0px #e1e1e1;
+	box-shadow: 2px 2px 0px #237dc8;
 }
 
 	table.table thead tr {
@@ -1477,4 +1477,57 @@ table.table {
 .filter-type {
 	display: inline-block;
 	margin: 0 auto;
+}
+
+
+.page-wrapper {
+	border: 1px solid #b6deff;
+	background-color: #b6deff;
+}
+
+.navigation-btn {
+	border-bottom: none;
+	position:relative;
+	top: 0px;
+}
+
+.selected-btn {
+	background-color: #b6deff !important;
+	border-color: #b6deff !important;
+	color: #237dc8!important;
+}
+
+.no-data-message {
+	background-color: white;
+	width: 50%;
+	margin: 20px auto 50px auto;
+	padding: 50px;
+}
+
+.registration-form {
+	max-width: 420px;
+	padding: 30px 38px 66px;
+	margin: 40px auto;
+	background-color: #eee;
+	border: 3px dotted rgba(0,0,0,0.1);
+}
+
+.registration-form input {
+	background-color: white!important;
+}
+
+.success-subscribe-label {
+	width: 224px;
+	margin: 0 auto;
+	background-color:lightgreen;
+	padding:10px;
+	display: none;
+}
+
+.wait-subscribe-label {
+	width: 224px;
+	margin: 0 auto;
+	background-color: lightskyblue;
+	padding: 10px;
+	display: none;
 }

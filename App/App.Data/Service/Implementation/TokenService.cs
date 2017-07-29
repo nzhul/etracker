@@ -4,6 +4,7 @@ using App.Models.Employees;
 using System.Net.Http;
 using System.Linq;
 using System;
+using Newtonsoft.Json;
 
 namespace App.Data.Service.Implementation
 {
@@ -23,19 +24,20 @@ namespace App.Data.Service.Implementation
 			return executor.ExecuteRequest(request);
 		}
 
-		public bool SaveToken(string token)
+		public bool SaveToken(string tokenJson)
 		{
-			Guid tokenValue = Guid.Parse(token);
-			Token dbToken = this.data.Tokens.All().Where(t => t.Value == tokenValue).FirstOrDefault();
+			ReportingToken incomingToken = JsonConvert.DeserializeObject<ReportingToken>(tokenJson);
+			ReportingToken dbToken = this.data.Tokens.All().Where(t => t.Token == incomingToken.Token).FirstOrDefault();
 			if (dbToken == null)
 			{
-				Token newToken = new Token
+				ReportingToken newToken = new ReportingToken
 				{
-					Expires = DateTime.UtcNow, // Provide this value
-					Value = tokenValue
+					Expires = incomingToken.Expires, // Provide this value
+					Token = incomingToken.Token
 				};
 
 				this.data.Tokens.Add(newToken);
+				this.data.SaveChanges();
 				return true;
 			}
 			else
@@ -44,9 +46,14 @@ namespace App.Data.Service.Implementation
 			}
 		}
 
-		public Token GetToken()
+		public ReportingToken GetToken()
 		{
 			return this.data.Tokens.All().FirstOrDefault();
+		}
+
+		public bool TokenExists(Guid token)
+		{
+			return this.data.Tokens.All().Any(t => t.Token == token);
 		}
 	}
 }

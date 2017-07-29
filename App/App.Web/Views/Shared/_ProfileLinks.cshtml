@@ -13,11 +13,7 @@
 						<span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu">
-						<li><a href="/manage/profile"><i class="fa fa-user"></i> Profile</a></li>
-						@if (this.User.IsInRole("Admin"))
-						{
-							<li><a href="@Url.Action("Index", "Orders", new { area = "Administration" }, null)"><i class="fa fa-lock"></i> Administration</a></li>
-						}
+						@*<li><a href="/manage/profile"><i class="fa fa-user"></i> Profile</a></li>*@
 						<li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-remove"></i> Logout</a></li>
 					</ul>
 				</div>

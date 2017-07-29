@@ -1,20 +1,40 @@
-﻿using System.Collections.Generic;
+﻿using App.Data;
+using App.Data.Service.Abstraction;
+using App.Data.Service.Implementation;
+using App.Models.InputModels;
+using App.Web.Infrastructure.Filters;
+using System;
+using System.Collections.Generic;
 using System.Web.Http;
 
 namespace App.Web.Controllers.API
 {
 	public class ReportsController : ApiController
 	{
-		[HttpGet]
-		public IHttpActionResult Get()
+		private IReportsService reportsService;
+
+		public ReportsController(IReportsService reportsService)
 		{
-			return Ok("Message");
+			this.reportsService = reportsService;
+		}
+
+		public ReportsController()
+			: this(new ReportsService(new UoWData()))
+		{
 		}
 
 		[HttpPost]
-		public IHttpActionResult Post(ICollection<object> models)
+		[AuthorizeReportRequest]
+		public IHttpActionResult Post(ICollection<ReportInputData> models)
 		{
-			return this.Json(new { success = true });
+			if (models == null || models.Count == 0)
+			{
+				return this.Json(new { status = "fail", message = "Empty reports collection" });
+			}
+
+			this.reportsService.CreateMultipleReports(models);
+
+			return this.Json(new { status = "success", message = "Reports where saved." });
 		}
 	}
 }

@@ -43,7 +43,7 @@
 		{
 			if (!context.Employees.Any())
 			{
-				IList<JsonEmployee> employeesData = JsonConvert.DeserializeObject<IList<JsonEmployee>>(new StreamReader(HttpContext.Current.Server.MapPath("~/App_Data/EmployeesData/few-employees.json")).ReadToEnd());
+				IList<JsonEmployee> employeesData = JsonConvert.DeserializeObject<IList<JsonEmployee>>(new StreamReader(HttpContext.Current.Server.MapPath("~/App_Data/EmployeesData/employees.json")).ReadToEnd());
 				foreach (var employeeDataItem in employeesData)
 				{
 					Employee newEmployee = new Employee
@@ -127,30 +127,13 @@
 				admin.FirstName = config.Firstname;
 				admin.LastName = config.Lastname;
 				admin.Email = config.Email;
-				admin.PhoneNumber = config.Phone;
-				admin.ProfileImage = this.LoadImageData(HttpContext.Current.Server.MapPath("~/App_Data/AdminProfileImage/avatar.jpg"));
 				admin.RegisterDate = DateTime.UtcNow;
-				admin.JobTitle = "Developer";
 				admin.IsActive = true;
 
 				userManager.Create(admin, config.Password);
 				admin.Roles.Add(new IdentityUserRole { RoleId = adminRole.Id, UserId = admin.Id });
 				admin.Roles.Add(new IdentityUserRole { RoleId = userRole.Id, UserId = admin.Id });
 				context.SaveChanges();
-			}
-		}
-
-		private byte[] LoadImageData(string filePath)
-		{
-			byte[] imageData = File.ReadAllBytes(filePath);
-
-			if (imageData != null && imageData.Length > 0)
-			{
-				return imageData;
-			}
-			else
-			{
-				return null;
 			}
 		}
 	}

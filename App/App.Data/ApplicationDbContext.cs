@@ -32,6 +32,6 @@ namespace App.Data
 
 		public IDbSet<Report> Reports { get; set; }
 
-		public IDbSet<Token> Tokens { get; set; }
+		public IDbSet<ReportingToken> Tokens { get; set; }
 	}
 }

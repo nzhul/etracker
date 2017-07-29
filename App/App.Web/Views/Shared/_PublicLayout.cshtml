@@ -25,7 +25,6 @@
 						<!-- Test -->
 					</div>
 					<div class="col-sm-4 text-center">
-						
 					</div>
 					@Html.Partial("_ProfileLinks")
 				</div>
@@ -34,21 +33,7 @@
 
 	</header>
 	<div class="content-body">
-		<section class="page-section pb-0">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 text-center">
-						<span class="label label-info">New arrival reports are available! (11)</span>
-						<hr style="margin: 40px 0 40px 0px;"/>
-					</div>
-				</div>
-			</div>
-			<div class="container">
-				<a href="@Url.Action("Log", "Reports")" class="cws-button alt @(ViewContext.RouteData.Values["Action"].ToString() == "Log" ? "selected-btn" : "") navigation-btn">Arrival Log</a>
-				<a href="@Url.Action("Employees", "Reports")" class="cws-button alt @(ViewContext.RouteData.Values["Action"].ToString() == "employees" ? "selected-btn" : "") navigation-btn">Employees</a>
-				@RenderBody()
-			</div>
-		</section>
+		@RenderBody()
 	</div>
 	<footer class="mt-50">
 		<hr />
@@ -76,7 +61,7 @@
 					<div class="checkbox">
 						<input id="checkbox3" type="checkbox" value="None" name="check">
 						<label for="checkbox3">Remember me</label>
-					</div>
+					</div>@*<a href="#">Забравена парола ?</a>*@
 				</div><a id="login-button" class="cws-button gray alt full-width mt-20">Login</a>
 				<span id="login-status" class="label label-info">Loging in ...</span>
 			</div>

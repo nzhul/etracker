@@ -1,0 +1,120 @@
+﻿@using App.Web.Models;
+@using Utilities.Paging;
+@model IEnumerable<ReportViewModel>
+@{
+	ViewBag.Title = "Employee Arrival Reporting";
+}
+
+<div class="container page-wrapper">
+	@*<div class="row">
+		<div class="col-md-12 text-right">
+			<h4>Filter by:</h4>
+			<div class="filter-type">
+				<input type="radio" id="firstname-radio" name="filter-type" value="firstname">
+				<label for="firstname-radio">First name</label>
+
+				<input type="radio" id="surname-radio" name="filter-type" value="surname">
+				<label for="surname-radio">Surname</label>
+
+				<input type="radio" id="email-radio" name="filter-type" value="email">
+				<label for="email-radio">Email</label>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+		</div>
+		<div class="col-md-6 text-right">
+			<input type="text" name="filterValue" value="" />
+			<a class="cws-button alt">Filter</a>
+		</div>
+	</div>*@
+	@if (Model.Count() > 0)
+	{
+		<div class="row mt-30">
+			<div class="col-md-12">
+				<table class="table">
+					<thead>
+						<tr>
+							<th><a href="#">Date and Time</a></th>
+							<th>Employee</th>
+							<th>Role</th>
+							<th>Teams</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var report in Model)
+						{
+							<tr>
+								<td>@report.Date.ToShortDateString() - @report.Date.ToShortTimeString()</td>
+								<td>@report.EmployeeName</td>
+								<td>@report.Role</td>
+								<td>@report.EmployeeTeams</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+				<div class="row">
+					<div class="col-md-12">
+						@Html.Partial("_Pager", ViewBag.PagingData as PagingData)
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+	else
+	{
+		<div class="row mt-30">
+			<div class="col-md-12 text-center">
+				<div class="no-data-message">
+					<p>There are no employee arrival reports at the moment. <br/> Please subscribe to receive some.</p>
+					@Ajax.ActionLink(
+									"Subscribe to WebService",
+									"Subscribe",
+									null,
+									new AjaxOptions
+									{
+										HttpMethod = "Post",
+										OnBegin = "subscribeBegin",
+										OnFailure = "subscribeFail",
+										OnSuccess = "subscribeSuccess"
+									},
+									new { @class = "cws-button alt" })
+					<div class="success-subscribe-label"><strong>Success</strong><br /> New Reports will be available soon (1-50 seconds)</div>
+					<div class="wait-subscribe-label"><strong>Please wait ...</strong></div>
+				</div>
+			</div>
+		</div>
+	}
+</div>
+
+
+@section scripts {
+	<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+	<script src="~/Scripts/jquery.validate.min.js"></script>
+	<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+	<script>
+		var waitLabel = $('.wait-subscribe-label');
+		var successLabel = $('.success-subscribe-label');
+
+		function subscribeFail(data) {
+		}
+
+		function subscribeSuccess(data) {
+			if (data.status == 'fail') {
+				alert('Subscribtion failed. Probably the web service is not responding');
+			}
+			if (data.status == 'success') {
+				$(this).hide();
+				waitLabel.hide();
+				successLabel.show();
+			}
+		}
+
+		function subscribeBegin() {
+			$(this).hide();
+			waitLabel.show();
+		}
+	</script>
+}
