@@ -15,5 +15,7 @@ namespace App.Data.Service.Abstraction
 		IQueryable<Report> GetReports(int? page, int? pagesize);
 
 		int GetReportsCount();
+
+		void ClearAllReports();
 	}
 }

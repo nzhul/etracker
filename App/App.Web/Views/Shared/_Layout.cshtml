@@ -38,7 +38,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 text-center">
-						<span class="label label-info">New arrival reports are available! (11)</span>
+						<span class="label label-info notifications-heading">New arrival reports are available! Refresh the page to view them!</span>
+						<div class="notifications-container"></div>
 						<hr style="margin: 40px 0 40px 0px;"/>
 					</div>
 				</div>
@@ -46,6 +47,7 @@
 			<div class="container">
 				<a href="@Url.Action("Log", "Reports")" class="cws-button alt @(ViewContext.RouteData.Values["Action"].ToString() == "Log" ? "selected-btn" : "") navigation-btn">Arrival Log</a>
 				<a href="@Url.Action("Employees", "Reports")" class="cws-button alt @(ViewContext.RouteData.Values["Action"].ToString() == "employees" ? "selected-btn" : "") navigation-btn">Employees</a>
+				<a href="@Url.Action("TrashReports", "Reports")" class="cws-button navigation-btn pull-right clear-reports-btn">Clear All Reports</a>
 				@RenderBody()
 			</div>
 		</section>
@@ -88,5 +90,34 @@
 
 	@Scripts.Render("~/bundles/garderob-fe-scripts")
 	@RenderSection("scripts", required: false)
+
+	<script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+	<script src="/signalr/hubs"></script>
+
+	<script>
+		$(function () {
+			var notificationHub = $.connection.notificationHub;
+			$.connection.hub.start().done(function () {
+				console.log('notification hub started');
+			});
+
+			notificationHub.client.notify = function (message) {
+				var $notificationsContainer = $('.notifications-container');
+				var $notificationHeading = $('.notifications-heading');
+				if (message) {
+					$notificationHeading.show();
+
+					var reportData = JSON.parse(message);
+					console.log(reportData);
+
+					var newReport = $('<div>');
+					newReport.addClass('report');
+					newReport.html(reportData.count + ' new reports' + ' | ' + reportData.date);
+
+					$notificationsContainer.append(newReport);
+				}
+			}
+		})
+	</script>
 </body>
 </html>

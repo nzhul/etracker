@@ -82,5 +82,16 @@ namespace App.Data.Service.Implementation
 		{
 			return this.data.Reports.All().Count();
 		}
+
+		public void ClearAllReports()
+		{
+			IList<Report> allReports = this.data.Reports.All().ToList();
+			foreach (var report in allReports)
+			{
+				this.data.Reports.Delete(report);
+			}
+
+			this.data.SaveChanges();
+		}
 	}
 }

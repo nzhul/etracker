@@ -1,6 +1,9 @@
 ﻿using App.Data.Service.Abstraction;
 using App.Web.Models;
+using App.Web.Notifications;
 using AutoMapper;
+using Microsoft.AspNet.SignalR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -17,7 +20,7 @@ namespace App.Web.Controllers
 		private const int defaultLinksRadius = 2;
 
 		public ReportsController(
-			ITokenService tokenService, 
+			ITokenService tokenService,
 			IReportsService reportsService,
 			IEmployeeService employeeService)
 		{
@@ -26,7 +29,7 @@ namespace App.Web.Controllers
 			this.employeeService = employeeService;
 		}
 
-		[Authorize]
+		[System.Web.Mvc.Authorize]
 		public ActionResult Log(int? page, int? pagesize)
 		{
 			IEnumerable<ReportViewModel> model = new List<ReportViewModel>();
@@ -37,14 +40,14 @@ namespace App.Web.Controllers
 			ViewBag.PagingData = PaginDataGenerator.GeneratePagingData(
 				this.HttpContext.Request.Url.ToString(),
 				this.HttpContext.Request.QueryString,
-				totalCount, 
-				pagesize ?? ReportsController.defaultPageSize, 
+				totalCount,
+				pagesize ?? ReportsController.defaultPageSize,
 				ReportsController.defaultLinksRadius);
 
 			return View(model);
 		}
 
-		[Authorize]
+		[System.Web.Mvc.Authorize]
 		public ActionResult Employees(int? page, int? pagesize)
 		{
 			IEnumerable<EmployeeViewModel> model = new List<EmployeeViewModel>();
@@ -60,6 +63,14 @@ namespace App.Web.Controllers
 				ReportsController.defaultLinksRadius);
 
 			return View(model);
+		}
+
+		[HttpGet]
+		public ActionResult TrashReports()
+		{
+			this.reportsService.ClearAllReports();
+
+			return RedirectToAction("Log");
 		}
 
 		[HttpPost]

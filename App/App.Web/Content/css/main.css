@@ -1531,3 +1531,18 @@ table.table {
 	padding: 10px;
 	display: none;
 }
+.report {
+	font-size:10px;
+}
+
+.notifications-heading {
+	display: none;
+}
+
+.clear-reports-btn {
+	position: relative;
+	left:30px;
+	border: none;
+	background-color: orangered;
+	color: white;
+}
