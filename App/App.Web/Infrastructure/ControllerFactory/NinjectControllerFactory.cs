@@ -26,7 +26,7 @@ namespace App.Web.Infrastructure.ControllerFactory
 		private void AddBindings()
 		{
 			ninjectKernel.Bind<IUoWData>().To<UoWData>();
-			ninjectKernel.Bind<IClientsService>().To<ClientsService>(); 
+			ninjectKernel.Bind<IUsersService>().To<UsersService>(); 
 			ninjectKernel.Bind<IConfigService>().To<ConfigService>();
 			ninjectKernel.Bind<ITokenService>().To<TokenService>();
 			ninjectKernel.Bind<IReportsService>().To<ReportsService>();

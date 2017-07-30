@@ -22,8 +22,6 @@ namespace App.Data
 
 		IRepository<CompanyRole> Roles { get; }
 
-		IRepository<Image> Images { get; }
-
 		IRepository<ReportingToken> Tokens { get; }
 
 		int SaveChanges();

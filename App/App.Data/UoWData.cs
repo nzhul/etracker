@@ -43,14 +43,6 @@ namespace App.Data
 			get { return this.GetRepository<ApplicationUser>(); }
 		}
 
-		public IRepository<Image> Images
-		{
-			get
-			{
-				return this.GetRepository<Image>();
-			}
-		}
-
 		public IRepository<Employee> Employees
 		{
 			get

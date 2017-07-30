@@ -1,24 +1,22 @@
 ﻿using App.Data.Service.Abstraction;
 using App.Data.Utilities;
 using App.Models;
+using App.Models.Configs;
 using App.Models.InputModels;
 using AutoMapper;
-using System.IO;
 using System.Linq;
 using System.Web;
-using System;
-using App.Models.Configs;
 
 namespace App.Data.Service.Implementation
 {
-	public class ClientsService : IClientsService
+	public class UsersService : IUsersService
 	{
 		private readonly IUoWData data;
 		private IConfigService configService;
 		private const int defaultPageSize = 10;
 		private const int defaultPage = 0;
 
-		public ClientsService(IUoWData data, IConfigService configService)
+		public UsersService(IUoWData data, IConfigService configService)
 		{
 			this.data = data;
 			this.configService = configService;
@@ -52,7 +50,7 @@ namespace App.Data.Service.Implementation
 			return this.data.Users.Find(id);
 		}
 
-		public void UpdateClient(ApplicationUser user)
+		public void UpdateUser(ApplicationUser user)
 		{
 			ApplicationUser dbUser = this.data.Users.All().Single(u => u.Email == user.Email);
 
@@ -75,7 +73,7 @@ namespace App.Data.Service.Implementation
 			ApplicationUser user = this.GetUserById(userId);
 			user.ProfileImage = ImageUtilities.CropImage(uploadedImage, "width=150&height=150&crop=auto&format=jpg");
 
-			this.UpdateClient(user);
+			this.UpdateUser(user);
 
 			return user.ProfileImage;
 		}
@@ -85,7 +83,7 @@ namespace App.Data.Service.Implementation
 			return this.data.Users.All().Where(u => u.IsActive).Count();
 		}
 
-		public void DeactivateClient(string id)
+		public void DeactivateUser(string id)
 		{
 			ApplicationUser dbUser = this.data.Users.Find(id);
 
@@ -96,7 +94,7 @@ namespace App.Data.Service.Implementation
 			}
 		}
 
-		public void ActivateClient(string id)
+		public void ActivateUser(string id)
 		{
 			ApplicationUser dbUser = this.data.Users.Find(id);
 
@@ -107,7 +105,7 @@ namespace App.Data.Service.Implementation
 			}
 		}
 
-		public bool ClientExists(string id)
+		public bool UserExists(string id)
 		{
 			if (string.IsNullOrEmpty(id))
 			{
@@ -119,7 +117,7 @@ namespace App.Data.Service.Implementation
 			}
 		}
 
-		public bool UpdateClient(string id, EditClientInputModel inputModel)
+		public bool UpdateUser(string id, EditClientInputModel inputModel)
 		{
 			ApplicationUser dbUser = this.data.Users.Find(id);
 			if (dbUser != null)

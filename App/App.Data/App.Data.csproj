@@ -119,8 +119,8 @@
     <Compile Include="Service\Abstraction\IEmployeeService.cs" />
     <Compile Include="Service\Abstraction\IReportsService.cs" />
     <Compile Include="Service\Abstraction\ITokenService.cs" />
-    <Compile Include="Service\Implementation\ClientsService.cs" />
-    <Compile Include="Service\Abstraction\IClientsService.cs" />
+    <Compile Include="Service\Implementation\UsersService.cs" />
+    <Compile Include="Service\Abstraction\IUsersService.cs" />
     <Compile Include="Service\Implementation\ConfigService.cs" />
     <Compile Include="Service\Implementation\EmployeeService.cs" />
     <Compile Include="Service\Implementation\ReportsService.cs" />

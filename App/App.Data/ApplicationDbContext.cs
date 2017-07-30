@@ -22,8 +22,6 @@ namespace App.Data
 			return new ApplicationDbContext();
 		}
 
-		public IDbSet<Image> Images { get; set; }
-
 		public IDbSet<Employee> Employees { get; set; }
 
 		public IDbSet<Team> Teams { get; set; }

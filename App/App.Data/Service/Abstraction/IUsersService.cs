@@ -5,7 +5,7 @@ using App.Models.InputModels;
 
 namespace App.Data.Service.Abstraction
 {
-	public interface IClientsService
+	public interface IUsersService
 	{
 		IQueryable<ApplicationUser> GetUsers(int? page, int? pagesize);
 
@@ -15,19 +15,19 @@ namespace App.Data.Service.Abstraction
 
 		ApplicationUser GetApplicationAdmin();
 
-		void UpdateClient(ApplicationUser user);
+		void UpdateUser(ApplicationUser user);
 
-		bool UpdateClient(string id, EditClientInputModel inputModel);
+		bool UpdateUser(string id, EditClientInputModel inputModel);
 
 		byte[] UploadProfileImage(HttpPostedFileBase uploadedImage, string userId);
 
 		int GetUsersCount();
 
-		void DeactivateClient(string id);
+		void DeactivateUser(string id);
 
-		void ActivateClient(string id);
+		void ActivateUser(string id);
 
-		bool ClientExists(string id);
+		bool UserExists(string id);
 
 		bool DeleteUserPhoto(string id);
 
