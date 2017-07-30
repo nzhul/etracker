@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace App.Data.Utilities
 {
-	public class RequestExecutor
+	public class RequestExecutor : IRequestExecutor
 	{
 		private string rootEndpoint;
 		private const string reportServiceRootEndpointConfigKey = "reportServiceRootEndpoint";

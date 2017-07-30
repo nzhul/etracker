@@ -1,6 +1,7 @@
 ﻿using App.Data;
 using App.Data.Service.Abstraction;
 using App.Data.Service.Implementation;
+using App.Data.Utilities;
 using Ninject;
 using System;
 using System.Web.Mvc;
@@ -31,6 +32,7 @@ namespace App.Web.Infrastructure.ControllerFactory
 			ninjectKernel.Bind<ITokenService>().To<TokenService>();
 			ninjectKernel.Bind<IReportsService>().To<ReportsService>();
 			ninjectKernel.Bind<IEmployeeService>().To<EmployeeService>();
+			ninjectKernel.Bind<IRequestExecutor>().To<RequestExecutor>();
 		}
 	}
 }

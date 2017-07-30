@@ -127,6 +127,7 @@
     <Compile Include="Service\Implementation\TokenService.cs" />
     <Compile Include="UoWData.cs" />
     <Compile Include="Utilities\ImageUtilities.cs" />
+    <Compile Include="Utilities\IRequestExecutor.cs" />
     <Compile Include="Utilities\RequestExecutor.cs" />
     <Compile Include="Utilities\TokenRequest.cs" />
   </ItemGroup>

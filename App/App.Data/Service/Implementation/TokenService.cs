@@ -11,17 +11,18 @@ namespace App.Data.Service.Implementation
 	public class TokenService : ITokenService
 	{
 		private IUoWData data;
+		private IRequestExecutor executor;
 
-		public TokenService(IUoWData data)
+		public TokenService(IUoWData data, IRequestExecutor executor)
 		{
 			this.data = data;
+			this.executor = executor;
 		}
 
 		public string AquireToken()
 		{
 			TokenRequest request = new TokenRequest(HttpMethod.Get, "/api/clients/subscribe?date=2016-03-10&callback=http://dev.etracker.com/api/reports");
-			RequestExecutor executor = new RequestExecutor();
-			return executor.ExecuteRequest(request);
+			return this.executor.ExecuteRequest(request);
 		}
 
 		public bool SaveToken(string tokenJson)
@@ -32,7 +33,7 @@ namespace App.Data.Service.Implementation
 			{
 				ReportingToken newToken = new ReportingToken
 				{
-					Expires = incomingToken.Expires, // Provide this value
+					Expires = incomingToken.Expires,
 					Token = incomingToken.Token
 				};
 

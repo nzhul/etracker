@@ -3,6 +3,7 @@
 	using App.Data;
 	using App.Data.Service.Abstraction;
 	using App.Data.Service.Implementation;
+	using App.Data.Utilities;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -26,7 +27,7 @@
 				return;
 			}
 
-			ITokenService tokenService = new TokenService(new UoWData());
+			ITokenService tokenService = new TokenService(new UoWData(), new RequestExecutor());
 
 			bool tokenExists = tokenService.TokenExists(token);
 			if (!tokenExists)
