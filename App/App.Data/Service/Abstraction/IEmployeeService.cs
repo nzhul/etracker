@@ -5,7 +5,7 @@ namespace App.Data.Service.Abstraction
 {
 	public interface IEmployeeService
 	{
-		IQueryable<Employee> GetEmployees(int? page, int? pagesize);
+		IQueryable<Employee> GetEmployees(int? page, int? pagesize, SortDirection? dir, SortType? type);
 
 		int GetEmployeesCount();
 	}

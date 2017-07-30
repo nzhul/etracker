@@ -90,6 +90,7 @@ namespace App.Data.Service.Implementation
 			return reports;
 		}
 
+		// TODO: Handle code duplication that occurs with EmployeeService
 		private IQueryable<Report> ApplySorting(IQueryable<Report> reports, SortDirection? dir, SortType? type)
 		{
 			switch (dir.Value)

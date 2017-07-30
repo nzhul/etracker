@@ -1,5 +1,6 @@
 ﻿@using App.Web.Models;
 @using Utilities.Paging;
+@using App.Data.Service.Abstraction;
 @model IEnumerable<EmployeeViewModel>
 
 @{
@@ -35,14 +36,14 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th><i class="fa fa-arrow-up"></i><a href="#">First name</a></th>
-						<th>Surname</th>
-						<th>Age</th>
-						<th>Email</th>
-						<th>Teams</th>
-						<th>Manager</th>
-						<th>Role</th>
-						<th>Reports</th>
+						<th><a href="@Html.SortingUrl(SortType.FirstName)">@Html.SortingArrow(SortType.FirstName) First name</a></th>
+						<th><a href="@Html.SortingUrl(SortType.SurName)">@Html.SortingArrow(SortType.SurName) Surname</a></th>
+						<th><a href="@Html.SortingUrl(SortType.Age)">@Html.SortingArrow(SortType.Age) Age</a></th>
+						<th><a href="@Html.SortingUrl(SortType.Email)">@Html.SortingArrow(SortType.Email) Email</a></th>
+						<th><a href="@Html.SortingUrl(SortType.Team)">@Html.SortingArrow(SortType.Team) Teams</a></th>
+						<th><a href="@Html.SortingUrl(SortType.Manager)">@Html.SortingArrow(SortType.Manager) Manager</a></th>
+						<th><a href="@Html.SortingUrl(SortType.Role)">@Html.SortingArrow(SortType.Role) Role</a></th>
+						<th><a href="@Html.SortingUrl(SortType.ReportCount)">@Html.SortingArrow(SortType.ReportCount) Reports</a></th>
 					</tr>
 				</thead>
 				<tbody>

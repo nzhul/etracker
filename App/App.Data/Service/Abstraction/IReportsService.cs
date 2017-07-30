@@ -30,6 +30,12 @@ namespace App.Data.Service.Abstraction
 		Date,
 		Name,
 		Role,
-		Team
+		Team,
+		FirstName,
+		SurName,
+		Age,
+		Email,
+		Manager,
+		ReportCount
 	}
 }

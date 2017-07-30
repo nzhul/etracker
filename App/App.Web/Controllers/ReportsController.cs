@@ -48,10 +48,10 @@ namespace App.Web.Controllers
 		}
 
 		[System.Web.Mvc.Authorize]
-		public ActionResult Employees(int? page, int? pagesize)
+		public ActionResult Employees(int? page, int? pagesize, SortDirection? dir, SortType? type)
 		{
 			IEnumerable<EmployeeViewModel> model = new List<EmployeeViewModel>();
-			model = this.employeeService.GetEmployees(page - 1, pagesize ?? ReportsController.defaultPageSize).ToList().Select(t => Mapper.Map(t, new EmployeeViewModel()));
+			model = this.employeeService.GetEmployees(page - 1, pagesize ?? ReportsController.defaultPageSize, dir, type).ToList().Select(t => Mapper.Map(t, new EmployeeViewModel()));
 
 			int totalCount = this.employeeService.GetEmployeesCount();
 

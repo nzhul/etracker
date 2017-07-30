@@ -11,25 +11,21 @@ namespace App.Web
 
 			bundles.IgnoreList.Clear();
 
-			Bundle mainFrontendStyleBundle = new StyleBundle("~/bundles/garderob-fe-styles");
+			Bundle mainFrontendStyleBundle = new StyleBundle("~/bundles/etracker-fe-styles");
 
 			mainFrontendStyleBundle.Include("~/Content/css/reset.css", new CssRewriteUrlTransform());
 			mainFrontendStyleBundle.Include("~/Content/css/bootstrap.css", new CssRewriteUrlTransform());
 			mainFrontendStyleBundle.Include("~/Content/css/font-awesome.css", new CssRewriteUrlTransform());
-			mainFrontendStyleBundle.Include("~/Content/css/owl.carousel.css", new CssRewriteUrlTransform());
-			mainFrontendStyleBundle.Include("~/Content/css/jquery.fancybox.css", new CssRewriteUrlTransform());
 			mainFrontendStyleBundle.Include("~/Content/fonts/fi/flaticon.css", new CssRewriteUrlTransform());
 			mainFrontendStyleBundle.Include("~/Content/css/main.css", new CssRewriteUrlTransform());
 			mainFrontendStyleBundle.Include("~/Content/css/indent.css", new CssRewriteUrlTransform());
-			mainFrontendStyleBundle.Include("~/Content/css/garderob.css", new CssRewriteUrlTransform());
-			mainFrontendStyleBundle.Include("~/Content/css/responsive.css", new CssRewriteUrlTransform());
 
 			mainFrontendStyleBundle.Orderer = new NonOrderingBundleOrderer();
 			
 
 			bundles.Add(mainFrontendStyleBundle);
 
-			Bundle mainFrontendScriptBundle = new ScriptBundle("~/bundles/garderob-fe-scripts").Include(
+			Bundle mainFrontendScriptBundle = new ScriptBundle("~/bundles/etracker-fe-scripts").Include(
 					"~/Content/js/jquery.min.js",
 					"~/Content/js/jquery-ui.min.js",
 					"~/Content/js/jquery.ui.touch-punch.min.js",
