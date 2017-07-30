@@ -504,7 +504,7 @@ namespace App.Web.Controllers
 			{
 				return Redirect(returnUrl);
 			}
-			return RedirectToAction("Index", "Home");
+			return RedirectToAction("Log", "Reports");
 		}
 
 		internal class ChallengeResult : HttpUnauthorizedResult

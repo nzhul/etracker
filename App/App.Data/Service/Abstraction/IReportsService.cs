@@ -12,10 +12,24 @@ namespace App.Data.Service.Abstraction
 
 		void CreateMultipleReports(ICollection<ReportInputData> inputData);
 
-		IQueryable<Report> GetReports(int? page, int? pagesize);
+		IQueryable<Report> GetReports(int? page, int? pagesize, SortDirection? dir, SortType? type);
 
 		int GetReportsCount();
 
 		void ClearAllReports();
+	}
+
+	public enum SortDirection
+	{
+		Asc,
+		Desc
+	}
+
+	public enum SortType
+	{
+		Date,
+		Name,
+		Role,
+		Team
 	}
 }

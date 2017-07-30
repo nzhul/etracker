@@ -1,12 +1,68 @@
-﻿using System;
+﻿using App.Data.Service.Abstraction;
+using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
+using Utilities;
 
 namespace App.Web.Infrastructure.Helpers
 {
 	public static class AppHelpers
 	{
+		public static IHtmlString SortingArrow(this HtmlHelper helper, SortType sortType)
+		{
+			string rawUrl = HttpContext.Current.Request.Url.ToString();
+			Uri newUrl = new Uri(rawUrl);
+
+			TagBuilder tb = new TagBuilder("i");
+			tb.AddCssClass("fa");
+
+			if (newUrl.QueryParameterExist("dir"))
+			{
+				if (newUrl.GetQuerystringParamValue("type") == sortType.ToString())
+				{
+					if (newUrl.GetQuerystringParamValue("dir") == "asc")
+					{
+						tb.AddCssClass("fa-arrow-up");
+					}
+					else
+					{
+						tb.AddCssClass("fa-arrow-down");
+					}
+				}
+			}
+
+			string htmlString = tb.ToString();
+			return new HtmlString(htmlString);
+			// <i class="fa fa-arrow-up"></i>
+		}
+
+		public static IHtmlString SortingUrl(this HtmlHelper helper, SortType sortType)
+		{
+			string rawUrl = HttpContext.Current.Request.Url.ToString();
+			Uri newUrl = new Uri(rawUrl);
+			newUrl = newUrl.UpdateQueryParamValue("type", sortType.ToString());
+
+			if (newUrl.QueryParameterExist("dir"))
+			{
+				string dirValue = newUrl.GetQuerystringParamValue("dir");
+				if (dirValue == "asc")
+				{
+					newUrl = newUrl.UpdateQueryParamValue("dir", "desc");
+				}
+				else
+				{
+					newUrl = newUrl.UpdateQueryParamValue("dir", "asc");
+				}
+			}
+			else
+			{
+				newUrl = newUrl.UpdateQueryParamValue("dir", "asc");
+			}
+
+			return new HtmlString(newUrl.ToString());
+		}
+
 		public static IHtmlString ByteImage(this HtmlHelper helper, byte[] imageData, string alt, string className, string id, string title, Dictionary<string, string> dataAttributes)
 		{
 			var base64 = Convert.ToBase64String(imageData);

@@ -30,10 +30,10 @@ namespace App.Web.Controllers
 		}
 
 		[System.Web.Mvc.Authorize]
-		public ActionResult Log(int? page, int? pagesize)
+		public ActionResult Log(int? page, int? pagesize, SortDirection? dir, SortType? type)
 		{
 			IEnumerable<ReportViewModel> model = new List<ReportViewModel>();
-			model = this.reportsService.GetReports(page - 1, pagesize ?? ReportsController.defaultPageSize).ToList().Select(t => Mapper.Map(t, new ReportViewModel()));
+			model = this.reportsService.GetReports(page - 1, pagesize ?? ReportsController.defaultPageSize, dir, type).ToList().Select(t => Mapper.Map(t, new ReportViewModel()));
 
 			int totalCount = this.reportsService.GetReportsCount();
 

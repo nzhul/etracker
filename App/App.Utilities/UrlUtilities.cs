@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
+using System.Linq;
 using System.Web;
 
 namespace Utilities
@@ -250,6 +251,19 @@ namespace Utilities
 			string resultUrlString = string.Format("{0}?{1}", pagePathWithoutQueryString, newQueryString);
 
 			return new Uri(resultUrlString);
+		}
+
+		public static bool QueryParameterExist(this Uri uri, string key)
+		{
+			NameValueCollection queryString = HttpUtility.ParseQueryString(uri.Query);
+			return queryString.AllKeys.Any(p => p == key);
+		}
+
+		public static string GetQuerystringParamValue(this Uri uri, string queryStringParamKey)
+		{
+			NameValueCollection urlQuery = HttpUtility.ParseQueryString(uri.Query);
+
+			return urlQuery[queryStringParamKey];
 		}
 	}
 }

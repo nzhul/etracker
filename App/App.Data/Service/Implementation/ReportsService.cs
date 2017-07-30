@@ -57,7 +57,7 @@ namespace App.Data.Service.Implementation
 			return null;
 		}
 
-		public IQueryable<Report> GetReports(int? page, int? pagesize)
+		public IQueryable<Report> GetReports(int? page, int? pagesize, SortDirection? dir, SortType? type)
 		{
 			if (page == null || page < 0)
 			{
@@ -69,11 +69,72 @@ namespace App.Data.Service.Implementation
 				pagesize = defaultPageSize;
 			}
 
+			if (dir == null)
+			{
+				dir = new SortDirection();
+			}
+
+			if (type == null)
+			{
+				type = new SortType();
+			}
+
 			IQueryable<Report> reports = this.data.Reports
 				.All()
 				.Include(t => t.Employee);
 
-			reports = reports.OrderByDescending(t => t.Date).Skip(page.Value * pagesize.Value).Take(pagesize.Value);
+			reports = this.ApplySorting(reports, dir, type);
+
+			reports = reports.Skip(page.Value * pagesize.Value).Take(pagesize.Value);
+
+			return reports;
+		}
+
+		private IQueryable<Report> ApplySorting(IQueryable<Report> reports, SortDirection? dir, SortType? type)
+		{
+			switch (dir.Value)
+			{
+				case SortDirection.Asc:
+					switch (type.Value)
+					{
+						case SortType.Date:
+							reports = reports.OrderBy(r => r.Date);
+							break;
+						case SortType.Name:
+							reports = reports.OrderBy(r => r.Employee.Name);
+							break;
+						case SortType.Role:
+							reports = reports.OrderBy(r => r.Employee.Role.Name);
+							break;
+						case SortType.Team:
+							reports = reports.OrderBy(r => r.Employee.Teams.FirstOrDefault().Name);
+							break;
+						default:
+							break;
+					}
+					break;
+				case SortDirection.Desc:
+					switch (type.Value)
+					{
+						case SortType.Date:
+							reports = reports.OrderByDescending(r => r.Date);
+							break;
+						case SortType.Name:
+							reports = reports.OrderByDescending(r => r.Employee.Name);
+							break;
+						case SortType.Role:
+							reports = reports.OrderByDescending(r => r.Employee.Role.Name);
+							break;
+						case SortType.Team:
+							reports = reports.OrderByDescending(r => r.Employee.Teams.FirstOrDefault().Name);
+							break;
+						default:
+							break;
+					}
+					break;
+				default:
+					break;
+			}
 
 			return reports;
 		}

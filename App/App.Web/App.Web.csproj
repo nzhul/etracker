@@ -272,7 +272,6 @@
     <Content Include="Content\js\jquery.form.min.js" />
     <Content Include="Content\js\jquery.min.js" />
     <Content Include="Content\js\jquery.validate.min.js" />
-    <Content Include="Content\js\script.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

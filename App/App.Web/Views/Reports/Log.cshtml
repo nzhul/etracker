@@ -1,5 +1,7 @@
 ﻿@using App.Web.Models;
 @using Utilities.Paging;
+@using Utilities;
+@using App.Data.Service.Abstraction;
 @model IEnumerable<ReportViewModel>
 @{
 	ViewBag.Title = "Employee Arrival Reporting";
@@ -36,10 +38,10 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th><a href="#">Date and Time</a></th>
-							<th>Employee</th>
-							<th>Role</th>
-							<th>Teams</th>
+							<th><a href="@Html.SortingUrl(SortType.Date)">@Html.SortingArrow(SortType.Date) Date and Time</a></th>
+							<th><a href="@Html.SortingUrl(SortType.Name)">@Html.SortingArrow(SortType.Name) Employee</a></th>
+							<th><a href="@Html.SortingUrl(SortType.Role)">@Html.SortingArrow(SortType.Role) Role</a></th>
+							<th><a href="@Html.SortingUrl(SortType.Team)">@Html.SortingArrow(SortType.Team) Teams</a></th>
 						</tr>
 					</thead>
 					<tbody>
