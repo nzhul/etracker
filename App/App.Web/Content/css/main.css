@@ -1550,3 +1550,10 @@ table.table {
 	background-color: orangered;
 	color: white;
 }
+
+.employee-detail-page {
+	margin: 20px auto 40px auto;
+	width:50%;
+	text-align:center;
+
+}

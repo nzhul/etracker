@@ -208,6 +208,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\API\ReportsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -375,6 +376,7 @@
     <Content Include="Views\Shared\_Pager.cshtml" />
     <Content Include="Views\Reports\Employees.cshtml" />
     <Content Include="Views\Shared\_PublicLayout.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
